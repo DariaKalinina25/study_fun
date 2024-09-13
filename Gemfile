@@ -14,6 +14,10 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 group :development, :test do
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-factory_bot', require: false
   gem 'rspec-rails', '~> 6.0'
   gem 'factory_bot_rails'
   gem 'capybara'
