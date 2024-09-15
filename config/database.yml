@@ -14,6 +14,10 @@ development:
 test:
   <<: *default
   database: study_fun_test
+  username: <%= ENV.fetch("DB_USERNAME") { "your_username" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "your_password" } %>
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
 
 production:
   <<: *default
