@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - add-rubocop-and-github-actions
   pull_request:
     branches:
       - main
+      - add-rubocop-and-github-actions
 
 jobs:
   rspec:
