@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - add-rubocop-and-github-actions
   pull_request:
     branches:
       - main
-      - add-rubocop-and-github-actions
 
 jobs:
   rspec:
@@ -33,7 +31,7 @@ jobs:
         run: |
           echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -43,14 +41,17 @@ jobs:
 
       - name: Install dependencies
         run: bundle install
-      
-      - name: Print all environment variable names
-        run: printenv | cut -d '=' -f 1
 
       - name: Set up the database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://$DB_USERNAME:$DB_PASSWORD@127.0.0.1:5432/study_fun_test
         run: |
           bundle exec rails db:create
           bundle exec rails db:schema:load
 
       - name: Run RSpec
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://$DB_USERNAME:$DB_PASSWORD@127.0.0.1:5432/study_fun_test
         run: bundle exec rspec
