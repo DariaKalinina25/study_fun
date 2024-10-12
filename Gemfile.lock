@@ -263,6 +263,9 @@ GEM
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
       rubocop-rspec (~> 3, >= 3.0.1)
+    rubocop-slim (0.2.8)
+      rubocop (~> 1.45)
+      slimi (~> 0.7)
     ruby-progressbar (1.13.0)
     slim (5.2.1)
       temple (~> 0.10.0)
@@ -271,6 +274,10 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 6.0, != 5.0.0)
+    slimi (0.7.5)
+      temple
+      thor
+      tilt
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -331,6 +338,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
+  rubocop-slim
   slim-rails
   sprockets-rails
   stimulus-rails
