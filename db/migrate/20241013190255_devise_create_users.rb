@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This migration adds the Devise-related columns to the users table.
 class DeviseCreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
