@@ -25,7 +25,7 @@ RSpec.configure do |config|
 
   # Defines the test type
   config.infer_spec_type_from_file_location!
-  
+
   # Hides internal Rails methods in errors for easier reading
   config.filter_rails_from_backtrace!
 end
