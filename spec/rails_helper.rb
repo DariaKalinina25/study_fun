@@ -17,6 +17,14 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
+  # Configuring shoulda-matchers
+  Shoulda::Matchers.configure do |shoulda_config|
+    shoulda_config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
+
   # Includes the create and build methods without the FactoryBot prefix
   config.include FactoryBot::Syntax::Methods
 
