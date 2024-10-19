@@ -30,6 +30,7 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
   gem 'rubocop-slim', require: false
+  gem 'shoulda-matchers'
 end
 
 group :development do
