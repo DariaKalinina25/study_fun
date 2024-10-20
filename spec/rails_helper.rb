@@ -1,9 +1,22 @@
 # frozen_string_literal: true
 
+# SimpleCov setup
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  add_filter '/spec/'
+end
+
+# RSpec and environment setup
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+
+# Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
+
+# Additional testing libraries
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'

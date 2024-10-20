@@ -31,6 +31,7 @@ group :development, :test do
   gem 'rubocop-rspec_rails', require: false
   gem 'rubocop-slim', require: false
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 group :development do
