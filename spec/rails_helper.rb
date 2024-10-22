@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-# SimpleCov setup
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter '/bin/'
-  add_filter '/db/'
-  add_filter '/spec/'
-end
-
 # RSpec and environment setup
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
