@@ -17,28 +17,34 @@ RSpec.describe 'User Registration' do
     fill_in 'Password confirmation', with: password_confirmation
   end
 
-  it 'user registration with correct data' do
-    fill_registration_form(user.email, user.password, user.password)
+  context 'when the user has entered correct data' do
+    it 'shows a message about successful registration' do
+      fill_registration_form(user.email, user.password, user.password)
 
-    click_link_or_button 'Sign up'
+      click_link_or_button 'Sign up'
 
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
+      expect(page).to have_content 'Welcome! You have signed up successfully.'
+    end
   end
 
-  it 'user registration with existing email' do
-    user.save!
-    fill_registration_form(user.email, user.password, user.password)
+  context 'when the user entered an existing email' do
+    it 'shows an error message' do
+      user.save!
+      fill_registration_form(user.email, user.password, user.password)
 
-    click_link_or_button 'Sign up'
+      click_link_or_button 'Sign up'
 
-    expect(page).to have_content 'Email has already been taken'
+      expect(page).to have_content 'Email has already been taken'
+    end
   end
 
-  it 'user registration with incorrect confirmation password' do
-    fill_registration_form(user.email, user.password, 'incorrect_password')
+  context 'when the user entered an incorrect confirmation password' do
+    it 'shows an error message' do
+      fill_registration_form(user.email, user.password, 'incorrect_password')
 
-    click_link_or_button 'Sign up'
+      click_link_or_button 'Sign up'
 
-    expect(page).to have_content "Password confirmation doesn't match Password"
+      expect(page).to have_content "Password confirmation doesn't match Password"
+    end
   end
 end

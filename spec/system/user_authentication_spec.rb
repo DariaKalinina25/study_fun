@@ -16,19 +16,23 @@ RSpec.describe 'User Authentication' do
     fill_in 'Password', with: password
   end
 
-  it 'user authentication with correct data' do
-    fill_authentication_form(user.email, user.password)
+  context 'when the user has entered correct data' do
+    it 'shows a login success message' do
+      fill_authentication_form(user.email, user.password)
 
-    click_link_or_button 'Log in'
+      click_link_or_button 'Log in'
 
-    expect(page).to have_content 'Signed in successfully'
+      expect(page).to have_content 'Signed in successfully'
+    end
   end
 
-  it 'user authentication with incorrect password' do
-    fill_authentication_form(user.email, 'incorrect_password')
+  context 'when the user entered an incorrect password' do
+    it 'shows an error message' do
+      fill_authentication_form(user.email, 'incorrect_password')
 
-    click_link_or_button 'Log in'
+      click_link_or_button 'Log in'
 
-    expect(page).to have_content 'Invalid Email or password.'
+      expect(page).to have_content 'Invalid Email or password.'
+    end
   end
 end
