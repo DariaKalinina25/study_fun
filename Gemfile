@@ -14,6 +14,7 @@ gem 'rails', '~> 7.1.4'
 gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
+gem 'tailwindcss-rails', '~> 3.0'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
