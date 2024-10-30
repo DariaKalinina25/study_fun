@@ -1,0 +1,11 @@
+nav.w-full.bg-stone-800.p-4.fixed.z-50
+  div.container.mx-auto.flex.justify-between.items-end
+    ul.flex.space-x-4.items-end
+      li
+        = link_to t('home.index.title'), root_path
+
+    div
+      - if user_signed_in?
+        = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
+      - else
+        = link_to t('devise.sessions.new.sign_in'), new_user_session_path
