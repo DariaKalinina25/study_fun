@@ -9,8 +9,6 @@ html
     = javascript_importmap_tags
   body
     = render 'shared/navbar'
-
-    p.notice= notice
-    p.alert= alert
+    = render 'shared/flash_messages'
 
     = yield
