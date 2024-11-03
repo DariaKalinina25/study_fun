@@ -59,3 +59,14 @@ a {
     @apply object-cover w-full h-full blur-sm opacity-70;
   }
 }
+
+/* Navbar */
+@layer components {
+  .navbar {
+    @apply w-full bg-stone-800 py-4 fixed z-50;
+  }
+
+  .navbar-container {
+    @apply container mx-auto px-8 flex justify-between items-center;
+  }
+}
