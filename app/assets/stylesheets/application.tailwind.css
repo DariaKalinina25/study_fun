@@ -62,7 +62,7 @@ a {
 
 /* Navbar */
 @layer components {
-  .navbar {
+  nav {
     @apply w-full bg-stone-800 py-4 fixed z-50;
   }
 
