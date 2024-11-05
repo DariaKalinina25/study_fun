@@ -14,15 +14,15 @@ RSpec.describe 'User Authentication' do
 
     fill_in 'Email', with: email
     fill_in 'Password', with: password
+
+    click_button I18n.t('devise.sessions.sign_in')
   end
 
   context 'when the user has entered correct data' do
-    it 'shows a login success message' do
+    it 'shows a successful sign-in message' do
       fill_authentication_form(user.email, user.password)
 
-      click_link_or_button 'Log in'
-
-      expect(page).to have_content 'Signed in successfully'
+      expect(page).to have_content(I18n.t('devise.sessions.signed_in'))
     end
   end
 
@@ -30,9 +30,7 @@ RSpec.describe 'User Authentication' do
     it 'shows an error message' do
       fill_authentication_form(user.email, 'incorrect_password')
 
-      click_link_or_button 'Log in'
-
-      expect(page).to have_content 'Invalid Email or password.'
+      expect(page).to have_content(I18n.t('devise.failure.invalid'))
     end
   end
 end
