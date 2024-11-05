@@ -41,4 +41,11 @@ RSpec.configure do |config|
 
   # Hides internal Rails methods in errors for easier reading
   config.filter_rails_from_backtrace!
+
+  # Includes Devise helpers (sign_in, sign_out) for system and controller tests
+  config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include Devise::Test::IntegrationHelpers, type: :controller
+
+  # Resets Warden state (sessions) after each system test
+  config.after(type: :system) { Warden.test_reset! }
 end
