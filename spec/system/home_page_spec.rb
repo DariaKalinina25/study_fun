@@ -9,38 +9,36 @@ RSpec.describe 'Home Page' do
 
   let(:user) { create(:user) }
 
+  let(:sign_in_text) { I18n.t('devise.sessions.sign_in') }
+  let(:sign_out_text) { I18n.t('devise.sessions.sign_out') }
+
+  def sign_in_and_visit_root(user)
+    sign_in(user)
+    visit root_path
+  end
+
   context 'when the user is not signed in' do
     before { visit root_path }
 
-    it 'displays "Sign In" link in the navbar' do
-      within('nav') do
-        expect(page).to have_link(I18n.t('devise.sessions.sign_in'), href: new_user_session_path)
-      end
-    end
-
-    it 'does not display "Sign Out" link in the navbar' do
-      within('nav') do
-        expect(page).to have_no_link(I18n.t('devise.sessions.sign_out'), href: destroy_user_session_path)
-      end
-    end
+    it { expect(page).to have_css('nav a', text: sign_in_text) }
+    it { expect(page).to have_no_css('nav button', text: sign_out_text) }
   end
 
   context 'when the user is signed in' do
+    before { sign_in_and_visit_root(user) }
+
+    it { expect(page).to have_css('nav button', text: sign_out_text) }
+    it { expect(page).to have_no_css('nav a', text: sign_in_text) }
+  end
+
+  context 'when the user is signed out' do
     before do
-      sign_in(user)
-      visit root_path
+      sign_in_and_visit_root(user)
+      click_button I18n.t('devise.sessions.sign_out')
     end
 
-    it 'displays "Sign Out" link in the navbar' do
-      within('nav') do
-        expect(page).to have_link(I18n.t('devise.sessions.sign_out'), href: destroy_user_session_path)
-      end
-    end
-
-    it 'does not display "Sign In" link in the navbar' do
-      within('nav') do
-        expect(page).to have_no_link(I18n.t('devise.sessions.sign_in'), href: new_user_session_path)
-      end
-    end
+    it { expect(page).to have_current_path(root_path) }
+    it { expect(page).to have_css('nav a', text: sign_in_text) }
+    it { expect(page).to have_no_css('nav button', text: sign_out_text) }
   end
 end

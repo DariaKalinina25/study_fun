@@ -21,24 +21,14 @@ RSpec.describe 'User Authentication' do
   context 'when the user has entered correct data' do
     before { fill_authentication_form(user.email, user.password) }
 
-    it 'redirects to the home page' do
-      expect(page).to have_current_path(root_path)
-    end
-
-    it 'shows a successful sign-in message' do
-      expect(page).to have_content(I18n.t('devise.sessions.signed_in'))
-    end
+    it { expect(page).to have_current_path(root_path) }
+    it { expect(page).to have_content(I18n.t('devise.sessions.signed_in')) }
   end
 
   context 'when the user entered an incorrect password' do
     before { fill_authentication_form(user.email, 'incorrect_password') }
 
-    it 'does not redirect to the home page' do
-      expect(page).to have_current_path(new_user_session_path)
-    end
-
-    it 'shows an error message' do
-      expect(page).to have_content(I18n.t('devise.failure.invalid'))
-    end
+    it { expect(page).to have_current_path(new_user_session_path) }
+    it { expect(page).to have_content(I18n.t('devise.failure.invalid')) }
   end
 end
