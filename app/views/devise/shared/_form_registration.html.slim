@@ -1,0 +1,17 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'space-y-4' }) do |f|
+  = render 'devise/shared/error_messages', resource:
+  .mb-4
+    = f.label :email, class: 'form-label-sm'
+    = f.email_field :email, class: 'input-field' 
+  .mb-4
+    = f.label :password, class: 'form-label-sm'
+    = f.password_field :password, class: 'input-field', placeholder: '6 characters minimum'
+  .mb-4
+    = f.label :password_confirmation, class: 'form-label-sm'
+    = f.password_field :password_confirmation, class: 'input-field'
+  
+  .text-center
+    = f.submit t('devise.registrations.sign_up'), class: 'btn-primary mt-4'
+
+.form-link
+  = render 'devise/shared/links'
