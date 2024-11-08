@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User Authentication' do
-  before do
-    driven_by(:rack_test)
-  end
-
   let(:user) { create(:user) }
 
   def fill_authentication_form(email, password)
@@ -22,13 +18,20 @@ RSpec.describe 'User Authentication' do
     before { fill_authentication_form(user.email, user.password) }
 
     it { expect(page).to have_current_path(root_path) }
-    it { expect(page).to have_content(I18n.t('devise.sessions.signed_in')) }
+    it { expect(page).to have_content I18n.t('devise.sessions.signed_in') }
+  end
+
+  context 'when the user entered an incorrect email' do
+    before { fill_authentication_form('incorrect email', user.password) }
+
+    it { expect(page).to have_current_path(new_user_session_path) }
+    it { expect(page).to have_content I18n.t('devise.failure.invalid') }
   end
 
   context 'when the user entered an incorrect password' do
     before { fill_authentication_form(user.email, 'incorrect_password') }
 
     it { expect(page).to have_current_path(new_user_session_path) }
-    it { expect(page).to have_content(I18n.t('devise.failure.invalid')) }
+    it { expect(page).to have_content I18n.t('devise.failure.invalid') }
   end
 end
