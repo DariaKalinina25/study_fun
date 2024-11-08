@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Home Page' do
-  before do
-    driven_by(:rack_test)
-  end
-
   let(:user) { create(:user) }
 
   let(:sign_in_text) { I18n.t('devise.sessions.sign_in') }

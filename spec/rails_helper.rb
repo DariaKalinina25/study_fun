@@ -48,4 +48,9 @@ RSpec.configure do |config|
 
   # Resets Warden state (sessions) after each system test
   config.after(type: :system) { Warden.test_reset! }
+
+  # Set the rack_test driver as the default for all :system tests
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
 end
