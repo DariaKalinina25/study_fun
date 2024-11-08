@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User Registration' do
+RSpec.describe 'User Registrations' do
   let(:user) { build(:user) }
 
   def fill_registration_form(email, password, password_confirmation)

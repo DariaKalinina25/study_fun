@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'User Authentication' do
+RSpec.describe 'User Sessions' do
   let(:user) { create(:user) }
 
   def fill_authentication_form(email, password)
