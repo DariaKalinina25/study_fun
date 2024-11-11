@@ -1,0 +1,6 @@
+- if notice || alert
+  .notification-container
+    - if notice
+      p.notification-success= notice
+    - if alert
+      p.notification-error= alert

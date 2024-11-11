@@ -1,0 +1,18 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-4' }) do |f|
+  .mb-4
+    = f.label :email, class: 'form-label-sm'
+    = f.email_field :email, class: 'input-field' 
+  .mb-4
+    = f.label :password, class: 'form-label-sm'
+    = f.password_field :password, class: 'input-field'
+
+  .check-box-form
+    - if devise_mapping.rememberable?
+      = f.check_box :remember_me, class: 'rounded'
+      = f.label :remember_me, class: 'ml-2'
+  
+  .text-center
+    = f.submit t('devise.sessions.sign_in'), class: 'btn-primary'
+
+.form-link
+  = render 'devise/shared/links'

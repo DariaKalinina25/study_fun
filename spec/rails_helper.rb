@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-# SimpleCov setup
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter '/bin/'
-  add_filter '/db/'
-  add_filter '/spec/'
-end
-
 # RSpec and environment setup
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -49,4 +41,16 @@ RSpec.configure do |config|
 
   # Hides internal Rails methods in errors for easier reading
   config.filter_rails_from_backtrace!
+
+  # Includes Devise helpers (sign_in, sign_out) for system and controller tests
+  config.include Devise::Test::IntegrationHelpers, type: :system
+  config.include Devise::Test::IntegrationHelpers, type: :controller
+
+  # Resets Warden state (sessions) after each system test
+  config.after(type: :system) { Warden.test_reset! }
+
+  # Set the rack_test driver as the default for all :system tests
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
 end

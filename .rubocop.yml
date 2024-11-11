@@ -8,3 +8,7 @@ require:
 
 AllCops:
   NewCops: enable
+
+# Disable checking for use of click_button
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: false

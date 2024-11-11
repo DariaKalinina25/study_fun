@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Text */
+body {
+  @apply font-serif;
+  @apply text-white;
+  @apply text-sm sm:text-base;
+}
+
+/* link */
+a {
+  @apply hover:text-amber-500;
+}
+
+/* Form */
+@layer components {
+  .form-container {
+    @apply container mx-auto flex justify-center items-center min-h-screen relative;
+  }
+
+  .form-wrapper {
+    @apply w-full max-w-md bg-stone-800 p-8 rounded-lg shadow-md relative z-10;
+  }
+
+  .form-label-lg {
+    @apply text-2xl text-center mb-6;
+  }
+
+  .form-label-sm {
+    @apply block mb-2;
+  }
+
+  .input-field {
+    @apply w-full p-2 border rounded text-black focus:border-amber-800 focus:ring-2 focus:ring-amber-500;
+  }
+
+  .check-box-form {
+    @apply flex items-center rounded;
+  }
+
+  .btn-primary {
+    @apply w-full py-2 px-4 bg-amber-600 hover:bg-amber-700 rounded-lg;
+  }
+
+  .form-link {
+    @apply mt-6 text-center;
+  }
+}
+
+/* Background */
+@layer components {
+  .background {
+    @apply size-full fixed bg-black;
+  }
+
+  .background-image {
+    @apply object-cover w-full h-full blur-sm opacity-70;
+  }
+}
+
+/* Navbar */
+@layer components {
+  nav {
+    @apply w-full bg-stone-800 py-4 fixed z-50;
+  }
+
+  .navbar-container {
+    @apply container mx-auto px-8 flex justify-between items-center;
+  }
+}
+
+/* Notification */
+@layer components {
+  .notification-container {
+    @apply fixed top-16 w-full flex justify-center z-50 px-4;
+  }
+
+  .notification-base {
+    @apply border rounded-lg p-4 text-center max-w-md;
+  }
+
+  .notification-success {
+    @apply notification-base bg-green-100 text-green-700 border-green-300;
+  }
+
+  .notification-error {
+    @apply notification-base bg-red-100 text-red-700 border-red-300;
+  }
+}

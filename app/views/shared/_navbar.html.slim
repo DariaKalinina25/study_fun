@@ -1,0 +1,10 @@
+nav
+  ul.navbar-container
+    li
+      = link_to 'Home', root_path
+
+    div
+    - if user_signed_in?
+      = button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
+    - else
+      = link_to t('devise.sessions.sign_in'), new_user_session_path
