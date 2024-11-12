@@ -4,7 +4,7 @@ class Folder < ApplicationRecord
 
   has_ancestry
 
-  validates :title, presence: true
+  validates :name, presence: true
 
   validate :limit_nesting_depth
 
