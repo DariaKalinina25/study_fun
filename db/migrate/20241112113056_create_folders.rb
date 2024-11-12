@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+# This migration creates the folders table with necessary columns,
+# including name, ancestry for hierarchical relationships,
+# and a reference to the user.
 class CreateFolders < ActiveRecord::Migration[7.1]
   def change
     create_table :folders do |t|

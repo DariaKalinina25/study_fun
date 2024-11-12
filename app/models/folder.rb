@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Folder model with hierarchical structure using Ancestry.
 class Folder < ApplicationRecord
   belongs_to :user
   has_many :notes, dependent: :destroy
@@ -11,8 +14,8 @@ class Folder < ApplicationRecord
   private
 
   def limit_nesting_depth
-    if depth >= 2
-      errors.add(:ancestry, I18n.t('folder.errors.depth_limit'))
-    end
+    return unless depth >= 2
+
+    errors.add(:ancestry, I18n.t('folder.errors.depth_limit'))
   end
 end
