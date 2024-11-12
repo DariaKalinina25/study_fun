@@ -1,0 +1,4 @@
+en:
+  folder:
+    errors:
+      depth_limit: "Cannot create beyond the second level of nesting."

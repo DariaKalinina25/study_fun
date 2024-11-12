@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '3.2.2'
 
+gem 'ancestry'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'importmap-rails'
